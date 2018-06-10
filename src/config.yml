@@ -1,0 +1,188 @@
+#Universal
+#Permissions
+characters-permission: "characters.player"
+characters-staff: "characters.staff"
+#Allows for bypassing of perm locked fields
+characters-staff-perm: "characters.staff.bypassperm"
+#Messages
+no-permission: "&6You do not have permission to do this!"
+header: "&5[&6Characters&5]&6"
+not-player: "&6You cannot do this!"
+not-found: "&6The Player you were looking for, was not found!"
+not-number: "&6You did not enter a number!"
+console-user: "&5Console"
+#Formatted Messages
+page: "&6Page &5%page% &6of &5%maxpage%"
+valid-page: "&6Please enter a number between &51 &6and &5%maxpage%"
+
+#Config
+#Permissions
+reload-permission: "characters.reload"
+#Messages
+config-reloaded: "&5Config &6has been reloaded"
+
+#Reset
+#Messages
+reset-other: "&6Their Character data has been reset"
+reset: "&6Character data has been reset"
+
+#CharacterUtil
+#Player Click 0 for right, 1 for shift-right
+player-click: 0
+#Number in seconds until player can be clicked again
+player-click-cooldown: 1
+#Keep to a Minimum of 1
+characters-cards: 1
+#Messages
+characters-disabled: "&5Characters is disabled"
+char-assign-command: "&5/char [subcommand] [value]"
+char-set-command: "&5/char set [Player] [field] [value]"
+use-char: "&6Please use &5/char [Player] [value] &6instead"
+no-character: "&6That player does not have a character"
+#FormattedMessages
+field-set-to: "&6You have set your &5%field% &6to &5%input%"
+field-set-by: "&6Your &5%field% &6has been set to &5%input% &6by &5%sender%"
+field-set-for: "&6You have set &5%target%'s %field% &6to &5%input%"
+field-player-set-to: "&6You have set &5%target%'s %field% &6to &5%input%"
+field-has-set-player: "&6Your &5%field% &6has been set to &5%input%"
+field-valid: "&6You can only enter &5%input% &6into &5%field%"
+enter-field-value: "&6Please enter a valid input in to &5%field%"
+enter-valid-field: "&6Please choose a valid field"
+#Command Arguments
+char-set: set
+#Character Fields
+charfields:
+- name
+- race
+- age
+- height
+- bodytype
+- hometown
+- gender
+- description
+- staff
+#Fixed Fields - have to have specific values
+fixedfields:
+- gender
+- staff
+
+#Fixed Fields for Gender
+gender:
+- Male
+- Female
+- Other
+
+#Fixed Fields for Staff
+staff:
+- Admin
+- Moderator
+
+#Perm Fields - require permissions for setting inputs from above, so for example, characters.admin, characters.moderator - avoid overlap with default permissions
+permfields:
+- staff
+
+#Fields given to the Placeholder Expansion
+placeholderfields:
+- name
+- race
+- age
+- height
+- bodytype
+- hometown
+- gender
+- description
+- staff
+
+#TravelCommand
+travel-enabled: true
+#Messages
+travel-disabled: "&5Travel is disabled"
+travel-sneak-message: "&6Travel: &5Sneaking"
+travel-walk-message: "&6Travel: &5Walking"
+travel-run-message: "&6Travel: &5Running"
+not-travel-method: "You have entered an invalid method of travel"
+travel-command: "&5/travel <speed>"
+#Formatted Messages
+travel-methods: "&5%input% &6 are the forms of travel."
+#TravelCommand Methods
+travel:
+- sneak
+- walk
+- run
+#TravelCommand Method Speeds :- 0-10
+travel-sneak: 1
+travel-walk: 2
+travel-run: 3
+
+#RollingCommand
+rolling-enabled: true
+rolling-advanced: false
+#Values
+rolling-default-die: 1
+rolling-default-side: 20
+rolling-max-die: 10
+rolling-max-side: 100
+rolling-max-mod: 10
+rolling-range: 30
+#Messages
+rolling-disabled: "&5Rolling is disabled"
+roll-requires: "&6A roll require dice and sides... /roll 1d20"
+roll-min-max: "&6A Maximum or Minimum was exceded."
+#Formatted Messages
+rolling-total: "&6Total: &5%total%"
+rolling-result: "&6Result: &5%result%"
+rolling-advanced-message: "&6%displayname% &5(%player%) &6rolled a &5%dice%&6"
+rolling-simple-message: "&6%displayname% &5(%player%) &6rolled &5%result% &6(&5%dice%&6)"
+
+#Help
+help-header: "&5[&6Help&5]&6"
+help-pages: 2
+#Help Lists
+help1:
+- "&5/char help [page] &6- Displays the help command"
+- "&5/char slot [slot] &6- Switches Character slot"
+- "&5/char reset &6- Resets Current Character"
+- "&5/char display [player/page] [page] &6- Displays the Character Sheet of the Player"
+- "&5/char [subcommand] [value] &6- Sets the selected field to the selected value if applicable"
+- "&5/char reload &6- Reloads the Plugin Config"
+help2:
+- "&5/char set [Player] [field] [value] &6- Sets the selected field to the selected value on a Player if applicable"
+- "&5/roll [ndn] [+/- n] &6- Rolls a dice with the specified values or 1d20 +0"
+- "&5/travel [travel method] &6- Sets the travel method"
+
+#Display
+display-enabled: true
+display-click-page: 1
+display-pages: 2
+#Messages
+your-character: "&5Your Character"
+#Formatted Messages
+character-of: "&6Character of &5%target%"
+field-display: "&5%field%&6: &6%input%"
+display1:
+- name
+- race
+- age
+- height
+- bodytype
+- hometown
+
+display2:
+- gender
+- description
+- staff
+
+#Slot
+#Messages
+slot-command: "&5/char slot [slot]"
+slot-same: "&5The Slot is the same as you already have it selected"
+slot-avaliable: "&5That slot is not avaliable"
+
+#Skills - using Hitpoints, Magicka and Stamina for Roleplay Combat
+skills-enabled: true
+skills-disabled: "&5Skills are disabled"
+skills-alter: "&5%player% &6has altered their &5%type% &6by &5%value% &6to &5%result%"
+hitpoints-default: 25
+stamina-default: 10
+magicka-default: 10
+skills-command: "&5/skills [type] [amount]"
