@@ -1,4 +1,4 @@
-package com.tripixelstudios.highchrisben.characters.Util;
+package online.christopherstocks.highchrisben.characters.Libs;
 
 import org.bukkit.configuration.file.YamlConfiguration;
 import org.bukkit.plugin.java.JavaPlugin;
@@ -7,21 +7,21 @@ import java.io.File;
 import java.io.IOException;
 
 class Config extends YamlConfiguration {
-    private JavaPlugin plugin;
+    private JavaPlugin instance;
     private String fileName;
 
     Config(JavaPlugin plugin, String fileName) {
-        this.plugin = plugin;
+        this.instance = plugin;
         this.fileName = (fileName + (fileName.endsWith(".yml") ? "" : ".yml"));
         createFile();
     }
 
     private void createFile() {
         try {
-            File file = new File(plugin.getDataFolder(), fileName);
+            File file = new File(instance.getDataFolder(), fileName);
             if (!file.exists()) {
-                if (plugin.getResource(fileName) != null) {
-                    plugin.saveResource(fileName, false);
+                if (instance.getResource(fileName) != null) {
+                    instance.saveResource(fileName, false);
                 } else {
                     save(file);
                 }
@@ -35,7 +35,7 @@ class Config extends YamlConfiguration {
 
     void save() {
         try {
-            save(new File(plugin.getDataFolder(), fileName));
+            save(new File(instance.getDataFolder(), fileName));
         } catch (IOException ex) {
             ex.printStackTrace();
         }

@@ -1,0 +1,153 @@
+name: "Characters"
+version: "5.0.0"
+description: "There Ultimate Character Card Plugin"
+load: STARTUP
+authors: ["Highchrisben" , "tbrog"]
+website: "https://christopherstocks.online"
+main: online.christopherstocks.highchrisben.characters.Characters
+softdepend: [PlaceholderAPI]
+
+permissions:
+  characters.admin:
+    default: op
+    description: The Default Permissions for an Admin
+    children:
+      characters.player: true
+      characters.updater: true
+      characters.reload: true
+      characters.reset.other: true
+      characters.permission.*: true
+      characters.set.other: true
+      characters.colour.*: true
+      travel.travel.other: true
+      karma.karma.other: true
+      attribute.attribute.other: true
+      levels.point.view.other: true
+      levels.stat.view.other: true
+  characters.player:
+    default: true
+    description: The Default Permissions for a Player
+    children:
+      characters.create: true
+      characters.use: true
+      characters.show.other: true
+      travel.use: true
+      travel.view.other: true
+      karma.use: true
+      karma.view.other: true
+      attribute.use: true
+      attribute.view.other: true
+      levels.use: true
+      levels.level.view.other: true
+      roll.use: true
+  characters.colour.*:
+    default: op
+    description: The Default Permissions for all Colour
+    children:
+      characters.colour: true
+      characters.colour.other: true
+  characters.create:
+    description: Allows for the Creation of Character Cards for Players
+    default: true
+  characters.updater:
+    description: Allows for Notification of a Characters Update for Players
+    default: op
+  characters.use:
+    description: Allows for Players to use the Character command and other features!
+    default: true
+  characters.reload:
+    description: Allows for Players to reload Characters config
+    default: op
+  characters.reset.other:
+    description: Allows for Players to reset others Characters
+    default: op
+  characters.show.other:
+    description: Allows for Players to view others Characters
+    default: true
+  characters.permission.*:
+    description: Allows for Players to use all permission based fields on their own and others inputs.
+    default: op
+  characters.set.other:
+    description: Allows for Players to edit others Character Cards
+    default: op
+  characters.colour:
+    description: Allows for Players to use Colour in their Inputs
+  characters.colour.other:
+    description: Allows for Players to use Colour in others Inputs
+  characters.permission.<field>.other:
+    description: Allows for Players to set others permission based field.
+  characters.permission.<field>:
+    description: Allows for Players to set their own permission based field.
+  travel.use:
+    description: Allows for Players to use the Travel Command
+    default: true
+  travel.travel.other:
+    description: Allows for Players to set others Travel
+    default: op
+  travel.view.other:
+    description: Allows for Players to view others Travel
+    default: true
+  karma.use:
+    description: Allows for Players to use the Karma Command
+    default: true
+  karma.karma.other:
+    description: Allows for Players to set others Karma
+    default: op
+  karma.view.other:
+    description: Allows for Players to view others Karma
+  attribute.use:
+    description: Allows for Players to use the Attribute Command
+    default: true
+  attribute.attribute.other:
+    description:  Allows for Players to set others Attribute
+    default: op
+  levels.use:
+    description: Allows for Players to use the Levels Command
+    default: true
+  levels.level.view.other:
+    description: Allows for Players to view others Levels
+    default: true
+  levels.point.view.other:
+    description: Allows for Players to view others Levels Points
+    default: op
+  levels.stat.view.other:
+    description: Allows for Players to view others Stats
+    default: op
+  roll.use:
+    description: Allows for Players to use the Roll Command
+    default: true
+
+commands:
+  characters:
+    description: The Base Characters Command
+    aliases: ["character","char","chars"]
+    permission: characters.use
+    permission-message: "You do not have permission to use this command"
+    usage: "/characters help <page> for aid!"
+  travel:
+    description: The Base Travel Command
+    aliases: ["trav", "tr"]
+    permission: travel.use
+    permission-message: "You do not have permission to use this command"
+    usage: "/characters help <page> for aid!"
+  karma:
+    description: The Base Karma Command
+    permission: karma.use
+    permission-message: "You do not have permission to use this command"
+    usage: "/characters help <page> for aid!"
+  attribute:
+    description: The Base Attribute Command
+    permission: attribute.use
+    permission-message: "You do not have permission to use this command"
+    usage: "/characters help <page> for aid!"
+  levels:
+    description: The Base Levels Command
+    aliases: ["lvl","level", "lvls"]
+    permission: levels.use
+    permission-message: "You do not have permission to use this command"
+    usage: "/characters help <page> for aid!"
+  roll:
+    description: The Base Roll Command
+    permission: roll.use
+    permission-message: "You do not have permission to use this command"
+    usage: "/characters help <page> for aid!"

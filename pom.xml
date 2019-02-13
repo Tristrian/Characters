@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project xmlns="http://maven.apache.org/POM/4.0.0"
-         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+<project xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xmlns="http://maven.apache.org/POM/4.0.0"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
-    <groupId>com.tripixelstudios.highchrisben</groupId>
+    <groupId>online.christopherstocks.highchrisben</groupId>
     <artifactId>Characters</artifactId>
-    <version>3.3.1</version>
+    <version>5.0.0</version>
 
     <properties>
         <project.java.version>1.8</project.java.version>
@@ -23,25 +23,23 @@
             <id>bstats-repo</id>
             <url>http://repo.bstats.org/content/repositories/releases/</url>
         </repository>
+        <repository>
+            <id>placeholderapi</id>
+            <url>http://repo.extendedclip.com/content/repositories/placeholderapi/</url>
+        </repository>
     </repositories>
 
     <dependencies>
         <dependency>
             <groupId>org.spigotmc</groupId>
             <artifactId>spigot-api</artifactId>
-            <version>1.12.2-R0.1-SNAPSHOT</version>
+            <version>1.13.2-R0.1-SNAPSHOT</version>
             <scope>provided</scope>
         </dependency>
         <dependency>
             <groupId>org.bukkit</groupId>
             <artifactId>bukkit</artifactId>
-            <version>1.12.2-R0.1-SNAPSHOT</version>
-            <scope>provided</scope>
-        </dependency>
-        <dependency>
-            <groupId>org.projectlombok</groupId>
-            <artifactId>lombok</artifactId>
-            <version>1.16.20</version>
+            <version>1.13-R0.1-SNAPSHOT</version>
             <scope>provided</scope>
         </dependency>
         <dependency>
@@ -50,18 +48,24 @@
             <version>1.2</version>
             <scope>compile</scope>
         </dependency>
+        <dependency>
+            <groupId>me.clip</groupId>
+            <artifactId>placeholderapi</artifactId>
+            <version>2.8.7</version>
+            <scope>provided</scope>
+        </dependency>
     </dependencies>
 
     <build>
         <resources>
             <resource>
-                <directory>src/</directory>
+                <directory>src/main/resources</directory>
                 <includes>
                     <include>plugin.yml</include>
                 </includes>
             </resource>
             <resource>
-                <directory>src/</directory>
+                <directory>src/main/resources</directory>
                 <includes>
                     <include>config.yml</include>
                 </includes>
@@ -87,7 +91,7 @@
                     <relocations>
                         <relocation>
                             <pattern>org.bstats</pattern>
-                            <shadedPattern>com.tripixelstudios.highchrisben.characters</shadedPattern>
+                            <shadedPattern>online.christopherstocks.highchrisben.deity</shadedPattern>
                         </relocation>
                     </relocations>
                 </configuration>
@@ -101,21 +105,7 @@
                 </executions>
             </plugin>
         </plugins>
-
-        <extensions>
-            <extension>
-                <groupId>org.apache.maven.wagon</groupId>
-                <artifactId>wagon-ftp</artifactId>
-                <version>1.0-alpha-6</version>
-            </extension>
-        </extensions>
     </build>
 
-    <distributionManagement>
-        <repository>
-            <id>Characters</id>
-            <url>ftp://tripixelstudios.com/public_html/maven2</url>
-        </repository>
-    </distributionManagement>
 
 </project>

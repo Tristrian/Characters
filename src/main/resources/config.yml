@@ -1,0 +1,187 @@
+# General
+login-create: true
+characters-max: 2
+
+# Modules
+travel-enabled: true
+karma-enabled: true
+attribute-enabled: true
+levels-enabled: true
+races-classes-enabled: true
+roll-enabled: true
+
+# Roll
+die-default: 1
+die-max: 20
+side-default: 20
+side-max: 100
+mod-max: 100
+rolling-advanced: false
+rolling-range: 30
+name-field: Name
+
+# Travel
+travel-default-speed: 2
+travel-default-name: Walk
+travel-methods:
+  - Sneak:1
+  - Walk:2
+  - Sprint:3
+
+# Karma
+karma-default-amount: 0
+karma-min-amount: -100
+karma-max-amount: 100
+karma-levels:
+  - Outlaw:-50
+  - Settler:0
+  - Sheriff:50
+
+# Level
+level-default: 1
+exp:
+  - 0
+  - 10
+  - 20
+  - 30
+  - 40
+  - 50
+  - 60
+  - 70
+  - 80
+  - 90
+points:
+  - 1
+  - 2
+  - 3
+  - 4
+  - 5
+  - 6
+  - 7
+  - 8
+  - 9
+  - 10
+
+# Races and Classes
+stat-header: "&6[&f:player:'s Stats&6]&f"
+stat-default: 0
+stats:
+  - Strength
+  - Affinity
+  - Dexterity
+class-default: "Warrior"
+race-default: "Human"
+classes:
+  - "Warrior"
+  - "Mage"
+  - "Archer"
+races:
+  - "Human"
+  - "Dwarf"
+  - "Elf"
+
+
+# Attribute
+attribute-header: "&6[&f:player:'s Attributes&6]&f"
+attribute-default-amount: 10
+attribute-min-amount: -100
+attribute-max-amount: 100
+attributes:
+  - Stamina
+  - Health
+  - Magicka
+
+# Help Pages
+help-items: 11
+help:
+  - "spacer"
+  - "&6[&fCharacters Help&6]&f :page: of :pages:"
+  - "/char help - shows the help command"
+  - "&f/char <field> <value> - sets field to the value specified"
+  - "/char show <player/card> <card> - shows a players/own character card"
+  - "&f/char reset <player> - resets a players/own character card"
+  - "/char select <Race/Class> - selects a race and/or class for a player"
+  - "&f/char reload - allows for reloading of plugin config"
+  - "/char slot - allows for changing of character card"
+  - "&f/char <field> set <player> <value> - allows for changing of fields on others character cards."
+  - "spacer"
+  - "spacer"
+  - "&6[&fCharacters Help&6]&f :page: of :pages:"
+  - "/levels <player> - display levels, experience and points of player/own"
+  - "&f/levels stats <player> - displays stats, race and class of player/own"
+  - "/levels <player> <value> - adds/subtracts experience of player"
+  - "&f/roll <ndx/stat/mod> <stat/mod> - rolls a dice with specified values"
+  - "/travel <player> - allows for viewing of other players/own travel method"
+  - "&f/travel <player/value> <value> - allows for changing the method of other players/own travel"
+  - "/karma <player> - display rank and karma of other players/own"
+  - "&f/karma <player> <value> - adds/subtracts to karma of player"
+  - "spacer"
+  - "spacer"
+  - "&6[&fCharacters Help&6]&f :page: of :pages:"
+  - "/attribute <player> - display attribute values of player/own"
+  - "&f/attribute <attribute> <value> - adds/subtracts to attribute of player"
+  - "/attribute <attribute> set <player> <value> - allows to alter other players attribute"
+  - "spacer"
+
+
+# Display Pages
+click-display: true
+click-shift: true
+click-cooldown: 2
+display-items: 3
+display-header: "&6[&f:player:'s Character&6]&f :page: of :pages:"
+character-display: "&6:field:: &f:value:"
+display:
+  - Name
+  - Age
+  - Gender
+
+# PlaceholderAPI
+papi: false
+
+# Updater
+beta-updates: true
+
+# Character Fields
+fields:
+  - Name
+  - Age
+  - Gender
+
+# Sets a field to require permission either characters.permission.* or characters.permission.<field>
+perm-fields:
+  - Age
+
+# Sets a field to fixed
+fixed-fields:
+  - Gender
+
+# Fixed Inputs to only one of these three
+Gender:
+  - Male
+  - Female
+  - Other
+
+# Messages
+update-fail: "&6[&fCharacters&6]&f Unable to check for Updates!"
+update-new: "&6[&fCharacters&6]&f New Update is avaliable!"
+help-command: "&6[&fCharacters&6]&f /characters help <page>"
+config-reloaded: "&6[&fCharacters&6]&f The Config has been reloaded"
+character-reset: "&6[&fCharacters&6]&f That Character has been reset"
+character-slot: "&6[&fCharacters&6]&f Character Slot: :slot:"
+character-set: "&6[&fCharacters&6]&f :field: has been set to :value:"
+travel-travel: "&6[&fCharacters&6]&f Currently :value:ing"
+karma-karma: "&6[&fCharacters&6]&f Currently an ':rank:' with :value: karma"
+attribute-attribute: "&6[&fCharacters&6]&f :attr:: :value:"
+level-level: "&6[&fCharacters&6]&f Currently at level :level: with :value: experience"
+races-classes-points: "&6[&fCharacters&6]&f :points: points avaliable to spend"
+races-classes-stat-level: "&6[&fCharacters&6]&f :stat: is now at :value:"
+races-classes-stat: "&6[&fCharacters&6]&f :stat:: :value:"
+races-classes: "&6[&fCharacters&6]&f :r/c:: :value:"
+races-classes-set: "&6[&fCharacters&6]&f :type: has been set to :value:"
+advanced-rolling: "&6:displayname: &f(:player:) &6rolled a &f:dice:&6"
+advanced-stat-rolling: "&6:displayname: &f(:player:) &6rolled a &f:dice:&6 &fin &6:stat:"
+simple-rolling: "&6:displayname: &f(:player:) &6rolled &f:result: &6(&f:dice:&6)"
+simple-stat-rolling: "&6:displayname: &f(:player:) &6rolled &f:result: &6(&f:dice:&6) &fin &6:stat:"
+roll-result: "&6Result: &f:result:"
+roll-total: "&6Total: &f:total:"
