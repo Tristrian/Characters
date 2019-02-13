@@ -28,6 +28,8 @@ public class PlayerJoin implements Listener {
                 Updater updater = new Updater();
                 if (updater.getLatestVersion().contains("b") && pluginConfig.getBoolean("beta-updates") && updater.checkForUpdates()) {
                     chat.sendMessage(pluginConfig.getString("update-new"), player);
+                }else if (updater.checkForUpdates()){
+                    chat.sendMessage(pluginConfig.getString("update-new"), player);
                 }
             } catch (Exception error) {
                 chat.sendMessage(pluginConfig.getString("update-fail"), player);

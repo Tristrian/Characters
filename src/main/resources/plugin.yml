@@ -1,5 +1,5 @@
 name: "Characters"
-version: "5.0.0"
+version: "5.0.1"
 description: "There Ultimate Character Card Plugin"
 load: STARTUP
 authors: ["Highchrisben" , "tbrog"]

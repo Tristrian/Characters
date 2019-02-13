@@ -42,7 +42,7 @@ public class PlayerClick implements Listener {
     private void preform(Player player, Player target) {
         if (cooldownOver(player)) {
             cooldowns.put(player, System.currentTimeMillis());
-            player.performCommand("char display " + target.getName());
+            player.performCommand("char show " + target.getName());
         }
     }
 }

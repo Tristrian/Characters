@@ -43,6 +43,9 @@ public class Characters implements CommandExecutor {
                     return false;
                 }
                 for (int i = ((page - 1) * items); i < (page * items); i++) {
+                    if (i >= pageItems.size()){
+                        break;
+                    }
                     if (pageItems.get(i).equalsIgnoreCase("empty")) {
                         continue;
                     }
@@ -373,6 +376,9 @@ public class Characters implements CommandExecutor {
                     return false;
                 }
                 for (int i = ((page - 1) * items); i < (page * items); i++) {
+                    if (i >= pageItems.size()){
+                        break;
+                    }
                     if (pageItems.get(i).equalsIgnoreCase("empty")) {
                         continue;
                     }

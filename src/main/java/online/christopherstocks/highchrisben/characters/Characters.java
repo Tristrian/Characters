@@ -2,12 +2,15 @@ package online.christopherstocks.highchrisben.characters;
 
 import online.christopherstocks.highchrisben.characters.Commands.*;
 import online.christopherstocks.highchrisben.characters.Ext.Placeholders;
+import online.christopherstocks.highchrisben.characters.Ext.Updater;
 import online.christopherstocks.highchrisben.characters.Libs.PluginConfig;
 import online.christopherstocks.highchrisben.characters.Listeners.PlayerClick;
 import online.christopherstocks.highchrisben.characters.Listeners.PlayerJoin;
 import org.bstats.bukkit.Metrics;
 import org.bukkit.plugin.PluginManager;
 import org.bukkit.plugin.java.JavaPlugin;
+
+import java.util.logging.Level;
 
 public class Characters extends JavaPlugin {
     private static Characters instance;
@@ -49,6 +52,13 @@ public class Characters extends JavaPlugin {
             }
         } else {
             pluginConfig.set("papi", false);
+        }
+        try {
+            if (new Updater().checkForUpdates()){
+                getLogger().log(Level.INFO, pluginConfig.getString("update-new"));
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
         }
     }
 }
