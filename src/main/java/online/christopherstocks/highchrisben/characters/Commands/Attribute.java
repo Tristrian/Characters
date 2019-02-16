@@ -19,7 +19,8 @@ public class Attribute implements CommandExecutor {
         Logic logic = new Logic();
 
         if (!pluginConfig.getBoolean("attribute-enabled")) {
-            return false;
+            new Chat(sender).sendMessage(pluginConfig.getString("module-disabled"), null);
+            return true;
         }
 
         if (!(sender instanceof Player)) {

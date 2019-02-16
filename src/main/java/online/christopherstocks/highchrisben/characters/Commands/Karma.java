@@ -20,7 +20,8 @@ public class Karma implements CommandExecutor {
         Logic logic = new Logic();
 
         if (!pluginConfig.getBoolean("karma-enabled")) {
-            return false;
+            new Chat(sender).sendMessage(pluginConfig.getString("module-disabled"), null);
+            return true;
         }
 
         List<String> ranks = new ArrayList<>(), amounts = new ArrayList<>();

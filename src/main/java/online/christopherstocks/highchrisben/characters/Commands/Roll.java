@@ -1,7 +1,9 @@
 package online.christopherstocks.highchrisben.characters.Commands;
 
-import online.christopherstocks.highchrisben.characters.Libs.*;
 import online.christopherstocks.highchrisben.characters.Libs.Character;
+import online.christopherstocks.highchrisben.characters.Libs.Chat;
+import online.christopherstocks.highchrisben.characters.Libs.Logic;
+import online.christopherstocks.highchrisben.characters.Libs.PluginConfig;
 import org.bukkit.Bukkit;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
@@ -19,7 +21,8 @@ public class Roll implements CommandExecutor {
         Logic logic = new Logic();
 
         if (!pluginConfig.getBoolean("roll-enabled")) {
-            return false;
+            new Chat(sender).sendMessage(pluginConfig.getString("module-disabled"), null);
+            return true;
         }
 
         if (!(sender instanceof Player)) {
@@ -132,14 +135,22 @@ public class Roll implements CommandExecutor {
     private void advRoll(int die, int side, int mod, String stat, Player player) {
         PluginConfig pluginConfig = new PluginConfig();
         String modString = mod >= 0 ? "+" + mod : String.valueOf(mod);
-        double range = pluginConfig.getDouble("characters-chat-range");
+        double range = pluginConfig.getDouble("rolling-range");
         SecureRandom random = new SecureRandom();
         int total = 0;
         Character character = new Character(player);
         if (stat != null) {
-            speak(player, range, pluginConfig.getString("advanced-rolling").replaceAll(":displayname:", character.getString(pluginConfig.getString("name-field"))).replaceAll(":player:", player.getName()).replaceAll(":dice:", die + "d" + side + modString).replaceAll(":stat:", stat));
+            if (range <= 0.0D) {
+                shout(pluginConfig.getString("advanced-rolling").replaceAll(":displayname:", character.getString(pluginConfig.getString("name-field"))).replaceAll(":player:", player.getName()).replaceAll(":dice:", die + "d" + side + modString).replaceAll(":stat:", stat));
+            }else{
+                speak(player, range, pluginConfig.getString("advanced-rolling").replaceAll(":displayname:", character.getString(pluginConfig.getString("name-field"))).replaceAll(":player:", player.getName()).replaceAll(":dice:", die + "d" + side + modString).replaceAll(":stat:", stat));
+            }
         } else {
-            speak(player, range, pluginConfig.getString("advanced-rolling").replaceAll(":displayname:", character.getString(pluginConfig.getString("name-field"))).replaceAll(":player:", player.getName()).replaceAll(":dice:", die + "d" + side + modString));
+            if (range <= 0.0D) {
+                shout(pluginConfig.getString("advanced-rolling").replaceAll(":displayname:", character.getString(pluginConfig.getString("name-field"))).replaceAll(":player:", player.getName()).replaceAll(":dice:", die + "d" + side + modString));
+            }else{
+                speak(player, range, pluginConfig.getString("advanced-rolling").replaceAll(":displayname:", character.getString(pluginConfig.getString("name-field"))).replaceAll(":player:", player.getName()).replaceAll(":dice:", die + "d" + side + modString));
+            }
         }
         for (int i = 0; i < die; i++) {
             int value = random.nextInt(side) + 1;
@@ -152,8 +163,9 @@ public class Roll implements CommandExecutor {
         }
         if (range <= 0.0D) {
             shout(pluginConfig.getString("roll-total").replaceAll(":total:", String.valueOf(total + mod)));
+        } else {
+            speak(player, range, pluginConfig.getString("roll-total").replaceAll(":total:", String.valueOf(total + mod)));
         }
-        speak(player, range, pluginConfig.getString("roll-total").replaceAll(":total:", String.valueOf(total + mod)));
     }
 
     private void simpleRoll(int die, int side, int mod, String stat, Player player) {
@@ -163,7 +175,6 @@ public class Roll implements CommandExecutor {
         SecureRandom random = new SecureRandom();
         int total = 0;
         Character character = new Character(player);
-        Chat chat = new Chat(player);
         for (int i = 0; i < die; i++) {
             int value = random.nextInt(side) + 1;
             total += value;
@@ -171,25 +182,24 @@ public class Roll implements CommandExecutor {
         if (stat != null) {
             if (range <= 0.0D) {
                 shout(pluginConfig.getString("simple-stat-rolling").replaceAll(":displayname:", character.getString(pluginConfig.getString("name-field").replaceAll(":player:", player.getName()).replaceAll(":result:", String.valueOf(total + mod)).replaceAll(":dice:", die + "d" + side + modString).replaceAll(":stat:", stat))));
-                return;
+            } else {
+                speak(player, range, pluginConfig.getString("simple-stat-rolling").replaceAll(":displayname:", character.getString(pluginConfig.getString("name-field"))).replaceAll(":player:", player.getName()).replaceAll(":result:", String.valueOf(total + mod)).replaceAll(":dice:", die + "d" + side + modString).replaceAll(":stat:", stat));
             }
-            speak(player, range, pluginConfig.getString("simple-stat-rolling").replaceAll(":displayname:", character.getString(pluginConfig.getString("name-field"))).replaceAll(":player:", player.getName()).replaceAll(":result:", String.valueOf(total + mod)).replaceAll(":dice:", die + "d" + side + modString).replaceAll(":stat:", stat));
         } else {
             if (range <= 0.0D) {
                 shout(pluginConfig.getString("simple-rolling").replaceAll(":displayname:", character.getString(pluginConfig.getString("name-field").replaceAll(":player:", player.getName()).replaceAll(":result:", String.valueOf(total + mod)).replaceAll(":dice:", die + "d" + side + modString))));
-                return;
+            } else {
+                speak(player, range, pluginConfig.getString("simple-rolling").replaceAll(":displayname:", character.getString(pluginConfig.getString("name-field"))).replaceAll(":player:", player.getName()).replaceAll(":result:", String.valueOf(total + mod)).replaceAll(":dice:", die + "d" + side + modString));
             }
-            speak(player, range, pluginConfig.getString("simple-rolling").replaceAll(":displayname:", character.getString(pluginConfig.getString("name-field"))).replaceAll(":player:", player.getName()).replaceAll(":result:", String.valueOf(total + mod)).replaceAll(":dice:", die + "d" + side + modString));
         }
     }
 
-    private void speak(Player player, double distance, String message)
-    {
+    private void speak(Player player, double distance, String message) {
         List<Entity> entities = player.getNearbyEntities(distance, distance, distance);
         entities.add(player);
         for (Object entity : entities) {
             if ((entity instanceof Player)) {
-                new Chat((Player)entity).sendMessage(message, (Player) entity);
+                new Chat((Player) entity).sendMessage(message, (Player) entity);
             }
         }
     }
@@ -200,11 +210,11 @@ public class Roll implements CommandExecutor {
         }
     }
 
-    private int parseInt(String intAsString, int max)
-    {
+    private int parseInt(String intAsString, int max) {
         try {
             return Math.min(Math.max(Integer.parseInt(intAsString), -max), max);
-        } catch (NumberFormatException ignored) {}
+        } catch (NumberFormatException ignored) {
+        }
         return Integer.MAX_VALUE;
     }
 }

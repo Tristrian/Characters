@@ -20,7 +20,8 @@ public class Travel implements CommandExecutor {
         Logic logic = new Logic();
 
         if (!pluginConfig.getBoolean("travel-enabled")) {
-            return false;
+            new Chat(sender).sendMessage(pluginConfig.getString("module-disabled"), null);
+            return true;
         }
 
         List<String> types = new ArrayList<>(), speeds = new ArrayList<>();

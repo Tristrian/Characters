@@ -19,7 +19,8 @@ public class Levels implements CommandExecutor {
         Logic logic = new Logic();
 
         if (!pluginConfig.getBoolean("levels-enabled")) {
-            return false;
+            new Chat(sender).sendMessage(pluginConfig.getString("module-disabled"), null);
+            return true;
         }
 
         List<String> exp = pluginConfig.getStringList("exp");

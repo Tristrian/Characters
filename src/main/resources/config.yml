@@ -163,6 +163,7 @@ Gender:
   - Other
 
 # Messages
+module-disabled: "&6[&fCharacters&6]&f This part of Characters has been disabled"
 update-fail: "&6[&fCharacters&6]&f Unable to check for Updates!"
 update-new: "&6[&fCharacters&6]&f New Update is avaliable!"
 help-command: "&6[&fCharacters&6]&f /characters help <page>"
