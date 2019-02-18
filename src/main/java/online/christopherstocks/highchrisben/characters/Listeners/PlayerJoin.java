@@ -23,6 +23,14 @@ public class PlayerJoin implements Listener {
             new Character(player);
         }
 
+        if (pluginConfig.getBoolean("set-speed-join")){
+            if (player.hasPermission("characters.create")) {
+                player.setWalkSpeed((new Character(player).getInt("travel.travel") / 10.0F));
+            }else{
+                player.setWalkSpeed((float) (pluginConfig.getDouble("travel-default-speed") / 10.0F));
+            }
+        }
+
         if (player.hasPermission("characters.updater")) {
             try {
                 Updater updater = new Updater();

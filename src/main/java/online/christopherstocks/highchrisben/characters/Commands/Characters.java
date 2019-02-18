@@ -58,7 +58,10 @@ public class Characters implements CommandExecutor {
                 return true;
             }
 
-            if (base.equalsIgnoreCase("select")) {
+            if (base.equalsIgnoreCase("select") && pluginConfig.getBoolean("races-classes-enabled")) {
+                if (args.length == 1){
+                    return false;
+                }
                 for (String race : pluginConfig.getStringList("races")) {
                     if (race.equalsIgnoreCase(args[1])) {
                         character.set("races-classes.race", race);
@@ -86,6 +89,9 @@ public class Characters implements CommandExecutor {
                 }
                 if (args.length == 1) {
                     for (int i = ((page - 1) * items); i < (page * items); i++) {
+                        if (i >= pageItems.size()){
+                            break;
+                        }
                         if (i == ((page - 1) * items)) {
                             chat.sendMessage(pluginConfig.getString("display-header").replaceAll(":page:", String.valueOf(page)).replaceAll(":pages:", String.valueOf((int) pages)).replace(":player:", player.getName()), player);
                         }
@@ -107,6 +113,9 @@ public class Characters implements CommandExecutor {
                             return false;
                         }
                         for (int i = ((page - 1) * items); i < (page * items); i++) {
+                            if (i >= pageItems.size()){
+                                break;
+                            }
                             if (i == ((page - 1) * items)) {
                                 chat.sendMessage(pluginConfig.getString("display-header").replaceAll(":page:", String.valueOf(page)).replaceAll(":pages:", String.valueOf((int) pages)).replace(":player:", player.getName()), player);
                             }
@@ -126,6 +135,9 @@ public class Characters implements CommandExecutor {
                         if (logic.verifyTarget(target)) {
                             Character characterTarget = new Character(target);
                             for (int i = ((page - 1) * items); i < (page * items); i++) {
+                                if (i >= pageItems.size()){
+                                    break;
+                                }
                                 if (i == ((page - 1) * items)) {
                                     chat.sendMessage(pluginConfig.getString("display-header").replaceAll(":page:", String.valueOf(page)).replaceAll(":pages:", String.valueOf((int) pages)).replace(":player:", target.getName()), target);
                                 }
@@ -154,6 +166,9 @@ public class Characters implements CommandExecutor {
                             }
                             Character characterTarget = new Character(target);
                             for (int i = ((page - 1) * items); i < (page * items); i++) {
+                                if (i >= pageItems.size()){
+                                    break;
+                                }
                                 if (i == ((page - 1) * items)) {
                                     chat.sendMessage(pluginConfig.getString("display-header").replaceAll(":page:", String.valueOf(page)).replaceAll(":pages:", String.valueOf((int) pages)).replace(":player:", target.getName()), target);
                                 }
@@ -438,6 +453,9 @@ public class Characters implements CommandExecutor {
                     if (logic.verifyTarget(target)) {
                         Character characterTarget = new Character(target);
                         for (int i = ((page - 1) * items); i < (page * items); i++) {
+                            if (i >= pageItems.size()){
+                                break;
+                            }
                             if (i == ((page - 1) * items)) {
                                 chat.sendMessage(pluginConfig.getString("display-header").replaceAll(":page:", String.valueOf(page)).replaceAll(":pages:", String.valueOf((int) pages)).replace(":player:", target.getName()), target);
                             }
@@ -452,7 +470,6 @@ public class Characters implements CommandExecutor {
                         }
                         return true;
                     }
-                    return false;
                 }
                 Player target = logic.getTarget(args[1]);
                 if (logic.verifyTarget(target)) {
@@ -463,6 +480,9 @@ public class Characters implements CommandExecutor {
                         }
                         Character characterTarget = new Character(target);
                         for (int i = ((page - 1) * items); i < (page * items); i++) {
+                            if (i >= pageItems.size()){
+                                break;
+                            }
                             if (i == ((page - 1) * items)) {
                                 chat.sendMessage(pluginConfig.getString("display-header").replaceAll(":page:", String.valueOf(page)).replaceAll(":pages:", String.valueOf((int) pages)).replace(":player:", target.getName()), target);
                             }

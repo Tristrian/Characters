@@ -21,6 +21,7 @@ rolling-range: 30
 name-field: Name
 
 # Travel
+set-speed-join: true
 travel-default-speed: 2
 travel-default-name: Walk
 travel-methods:

@@ -60,7 +60,6 @@ public class Character {
             }
             config.options().copyDefaults(true);
             config.save();
-            player.setWalkSpeed((float) (pluginConfig.getDouble("travel-default-speed") / 10.0F));
         }
     }
 

@@ -1,5 +1,8 @@
 package online.christopherstocks.highchrisben.characters;
 
+import me.clip.placeholderapi.PlaceholderAPI;
+import me.clip.placeholderapi.PlaceholderAPIPlugin;
+import me.clip.placeholderapi.PlaceholderHook;
 import online.christopherstocks.highchrisben.characters.Commands.*;
 import online.christopherstocks.highchrisben.characters.Ext.Placeholders;
 import online.christopherstocks.highchrisben.characters.Ext.Updater;
@@ -43,13 +46,9 @@ public class Characters extends JavaPlugin {
             }
         }
         new Metrics(this);
-        if (pluginManager.isPluginEnabled("PlaceholderAPI")) {
-            try {
-                new Placeholders(this).hook();
-                pluginConfig.set("papi", true);
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
+        if (pluginManager.getPlugin("PlaceholderAPI") != null) {
+            new Placeholders(this).hook();
+            pluginConfig.set("papi", true);
         } else {
             pluginConfig.set("papi", false);
         }
