@@ -6,7 +6,7 @@
 
     <groupId>online.christopherstocks.highchrisben</groupId>
     <artifactId>Characters</artifactId>
-    <version>5.0.4</version>
+    <version>5.0.5</version>
 
     <properties>
         <project.java.version>1.8</project.java.version>
