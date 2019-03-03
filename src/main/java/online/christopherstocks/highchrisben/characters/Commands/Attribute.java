@@ -109,27 +109,26 @@ public class Attribute implements CommandExecutor {
         String base = args[0];
         List<String> attributes = pluginConfig.getStringList("attributes");
 
-        // /atribute Stamina -10
         if (args.length == 2) {
             for (String attr : attributes) {
                 if (attr.equalsIgnoreCase(base)) {
                     if (logic.integer(args[1])) {
-                        int amount = Integer.parseInt(args[3]);
+                        int amount = Integer.parseInt(args[1]);
 
-                        if (character.getInt(attr) + amount < pluginConfig.getInt("attribute-min-amount")) {
+                        if (character.getInt("attribute." + attr) + amount < pluginConfig.getInt("attribute-min-amount")) {
                             character.set("attribute." + attr, pluginConfig.getInt("attribute-min-amount"));
-                            chat.sendMessage(pluginConfig.getString("attribute-attribute").replaceAll(":value:", character.getString(attr)).replaceAll(":attr:", attr), player);
+                            chat.sendMessage(pluginConfig.getString("attribute-attribute").replaceAll(":value:", character.getString("attribute." + attr)).replaceAll(":attr:", attr), player);
                             return true;
                         }
 
-                        if (character.getInt(attr) + amount > pluginConfig.getInt("attribute-max-amount")) {
+                        if (character.getInt("attribute." + attr) + amount > pluginConfig.getInt("attribute-max-amount")) {
                             character.set("attribute." + attr, pluginConfig.getInt("attribute-max-amount"));
-                            chat.sendMessage(pluginConfig.getString("attribute-attribute").replaceAll(":value:", character.getString(attr)).replaceAll(":attr:", attr), player);
+                            chat.sendMessage(pluginConfig.getString("attribute-attribute").replaceAll(":value:", character.getString("attribute." + attr)).replaceAll(":attr:", attr), player);
                             return true;
                         }
 
-                        character.set("attribute." + attr, character.getInt(attr) + amount);
-                        chat.sendMessage(pluginConfig.getString("attribute-attribute").replaceAll(":value:", character.getString(attr)).replaceAll(":attr:", attr), player);
+                        character.set("attribute." + attr, character.getInt("attribute." + attr) + amount);
+                        chat.sendMessage(pluginConfig.getString("attribute-attribute").replaceAll(":value:", character.getString("attribute." + attr)).replaceAll(":attr:", attr), player);
                         return true;
                     }
                     return false;
@@ -137,7 +136,7 @@ public class Attribute implements CommandExecutor {
             }
         }
 
-        if (args.length == 4 && player.hasPermission("attribute.attribute.other") && args[1].equalsIgnoreCase("alter")) {
+        if (args.length == 4 && player.hasPermission("attribute.attribute.other") && args[1].equalsIgnoreCase("set")) {
             for (String attr : attributes) {
                 if (attr.equalsIgnoreCase(base)) {
                     Player target = logic.getTarget(args[2]);
@@ -145,29 +144,29 @@ public class Attribute implements CommandExecutor {
                         Character characterTarget = new Character(target);
                         int amount = Integer.parseInt(args[3]);
 
-                        if (characterTarget.getInt(attr) + amount < pluginConfig.getInt("attribute-min-amount")) {
+                        if (characterTarget.getInt("attribute." + attr) + amount < pluginConfig.getInt("attribute-min-amount")) {
                             characterTarget.set("attribute." + attr, pluginConfig.getInt("attribute-min-amount"));
                             if (target != player) {
-                                new Chat(target).sendMessage(pluginConfig.getString("attribute-attribute").replaceAll(":value:", characterTarget.getString(attr)).replaceAll(":attr:", attr), target);
+                                new Chat(target).sendMessage(pluginConfig.getString("attribute-attribute").replaceAll(":value:", characterTarget.getString("attribute." + attr)).replaceAll(":attr:", attr), target);
                             }
-                            chat.sendMessage(pluginConfig.getString("attribute-attribute").replaceAll(":value:", characterTarget.getString(attr)).replaceAll(":attr:", attr), target);
+                            chat.sendMessage(pluginConfig.getString("attribute-attribute").replaceAll(":value:", characterTarget.getString("attribute." + attr)).replaceAll(":attr:", attr), target);
                             return true;
                         }
 
                         if (characterTarget.getInt("attribute." + attr) + amount > pluginConfig.getInt("attribute-max-amount")) {
                             characterTarget.set("attribute." + attr, pluginConfig.getInt("attribute-max-amount"));
                             if (target != player) {
-                                new Chat(target).sendMessage(pluginConfig.getString("attribute-attribute").replaceAll(":value:", characterTarget.getString(attr)).replaceAll(":attr:", attr), target);
+                                new Chat(target).sendMessage(pluginConfig.getString("attribute-attribute").replaceAll(":value:", characterTarget.getString("attribute." + attr)).replaceAll(":attr:", attr), target);
                             }
-                            chat.sendMessage(pluginConfig.getString("attribute-attribute").replaceAll(":value:", characterTarget.getString(attr)).replaceAll(":attr:", attr), target);
+                            chat.sendMessage(pluginConfig.getString("attribute-attribute").replaceAll(":value:", characterTarget.getString("attribute." + attr)).replaceAll(":attr:", attr), target);
                             return true;
                         }
 
-                        characterTarget.set("attribute." + attr, characterTarget.getInt(attr) + amount);
+                        characterTarget.set("attribute." + attr, characterTarget.getInt("attribute." + attr) + amount);
                         if (target != player) {
-                            new Chat(target).sendMessage(pluginConfig.getString("attribute-attribute").replaceAll(":value:", characterTarget.getString(attr)).replaceAll(":attr:", attr), target);
+                            new Chat(target).sendMessage(pluginConfig.getString("attribute-attribute").replaceAll(":value:", characterTarget.getString("attribute." + attr)).replaceAll(":attr:", attr), target);
                         }
-                        chat.sendMessage(pluginConfig.getString("attribute-attribute").replaceAll(":value:", characterTarget.getString(attr)).replaceAll(":attr:", attr), target);
+                        chat.sendMessage(pluginConfig.getString("attribute-attribute").replaceAll(":value:", characterTarget.getString("attribute." + attr)).replaceAll(":attr:", attr), target);
                         return true;
                     }
                     return false;
